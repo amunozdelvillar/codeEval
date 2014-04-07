@@ -1,0 +1,16 @@
+
+public class Main {
+
+    	public static void main(String[] args)
+		{
+			printOddNumbers(1, 99);
+		}
+		
+		public static void printOddNumbers(int start, int finish)
+		{
+			start = (start%2 == 0) ? start+1: start;
+			for(int num = start;num <= finish;num +=2){
+				System.out.println(num);
+			}
+		}
+}

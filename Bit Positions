@@ -1,0 +1,36 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
+
+
+public class Main {
+    
+	public static void main(String[] args) throws IOException
+	{
+		for(String s : getTestCasesFromFile(args[0])){
+			String[] values = s.split(",");
+			int n  = Integer.parseInt(values[0]);
+			int p1 = Integer.parseInt(values[1]);
+			int p2 = Integer.parseInt(values[2]);
+			System.out.println(isBitTheSame(new byte[] { (byte) n }, p1 , p2));
+		}
+	}
+	
+	public static boolean isBitTheSame(byte[] n, int p1, int p2){
+		BitSet bitSet = BitSet.valueOf(n);
+		return (bitSet.get(p1-1) == bitSet.get(p2-1)) ? true : false;
+	}
+	
+	public static List<String> getTestCasesFromFile(String path) throws IOException{
+		List<String> testCases = new ArrayList<String>();
+		BufferedReader br = new BufferedReader(new FileReader(path));
+		String line = "";
+		while((line = br.readLine()) != null){
+			testCases.add(line);
+		}
+		return testCases;
+	}
+}

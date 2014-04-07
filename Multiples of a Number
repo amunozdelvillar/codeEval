@@ -1,0 +1,44 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Main {
+
+    public static void main(String[] args) throws IOException
+	{
+		int x = 0;
+		int n = 0;
+		for(String lista : getTestCasesFromFile(args[0])){
+			String[] num = lista.split(",");
+			x = Integer.parseInt(num[0]);
+			n = Integer.parseInt(num[1]);
+			System.out.println(getMultipleOfN(x, n));
+		}
+	}
+	
+	//The first to find will always be the lowest
+	public static int getMultipleOfN(int x, int n)
+	{
+		for(int z = x; z <= Math.pow(n, 2);z++){
+			for(int y = 0; y <= Math.pow(n, 2);y++){
+				if((z * y) == Math.pow(n, 2)){
+					return (z);
+				}
+			}
+		}
+		return 0;
+	}
+	
+	public static List<String> getTestCasesFromFile(String path) throws IOException{
+		List<String> test_cases = new ArrayList<String>();
+		BufferedReader br = new BufferedReader(new FileReader(path));
+		String line = "";
+		while((line = br.readLine()) != null){
+			test_cases.add(line);
+		}
+		return test_cases;
+	}
+}

@@ -1,0 +1,34 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by angel on 3/6/14.
+ */
+public class Main {
+
+    public static void main(String[] args) throws IOException
+    {
+        for(String _case : getTestCases(args[0])){
+            System.out.println(isEven(Integer.parseInt(_case)));
+        }
+    }
+
+    public static int isEven(int number)
+    {
+        return (number % 2 == 0)? 1 : 0;
+    }
+
+    public static List<String> getTestCases(String path)throws IOException
+    {
+        List<String> testCases = new ArrayList<String>();
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        String line = "";
+        while ((line = br.readLine()) != null){
+            testCases.add(line);
+        }
+        return testCases;
+    }
+}

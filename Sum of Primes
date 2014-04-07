@@ -1,0 +1,32 @@
+
+public class Main {
+    public static void main(String[] args)
+	{
+		int prime_total = 0;
+		int counter = 1;
+		int prime_acumulator = 0;
+		while(prime_total < 1000){
+			if(isPrime(counter)){
+				prime_acumulator += counter;
+				prime_total++;
+			}
+			counter++;
+		}
+		System.out.println(prime_acumulator);
+		
+	}
+	
+	public static boolean isPrime(int curr_number){
+		int flag = 0;
+		if(curr_number != 1){
+			for(int x = 1; x <=curr_number; x++){
+				if(curr_number%x == 0){
+					flag++;
+					if(flag>2){return false;}
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+}

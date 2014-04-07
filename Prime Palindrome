@@ -1,0 +1,33 @@
+
+public class Main {
+    
+	public static void main(String[] args)
+	{
+		int largest = 0;
+		for(int counter = 1; counter<= 1000; counter++){
+			if(isPrime(counter)&& isPalindrome(String.valueOf(counter))){
+				if(counter > largest){
+					largest = counter;
+				}
+			}
+		}
+		System.out.println(largest);
+	}
+	
+	public static boolean isPalindrome(String number){
+		StringBuilder sBuilder = new StringBuilder(number);
+		return(number.equals(sBuilder.reverse().toString())) ? true: false;
+	}
+	
+	public static boolean isPrime(int curr_number){
+		int flag = 0;
+		for(int x = 1; x <=curr_number; x++){
+			if(curr_number%x == 0){
+				flag++;
+				if(flag>2){return false;}
+			}
+		}
+		return true;
+	}
+
+}

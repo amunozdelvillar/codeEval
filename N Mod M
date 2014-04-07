@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by angel on 3/10/14.
+ */
+public class Main {
+
+    public static void main(String[] args) throws IOException
+    {
+        for(String currentCase : getTestCases(args[0])){
+            String[] numbers = currentCase.split(",");
+            int n = Integer.parseInt(numbers[0]);
+            int m = Integer.parseInt(numbers[1]);
+            System.out.println(getRemainder(n,m));
+        }
+    }
+
+    public static int getRemainder(int n, int m){
+        int result = n / m;
+        return (n - (result * m));
+    }
+
+    public static List<String> getTestCases(String path) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        List<String> cases = new ArrayList<String>();
+        String line = "";
+        while((line = br.readLine()) != null){
+            cases.add(line);
+        }
+        return cases;
+    }
+}

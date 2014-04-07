@@ -1,0 +1,53 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by angel on 3/10/14.
+ */
+public class Main {
+    //Input
+    //Array[0] = x1, [1] = y1 ; [2] = x2 , [3] = y2;
+    //(25, 4) (1, -6)
+    //(47, 43) (-25, -11)
+    public static void main(String[] args) throws  IOException
+    {
+        int[] input = null;
+        for(String currentCase : getTestCases(args[0])){
+            input = parseInput(currentCase);
+            System.out.println(calculateDistance(input[0],input[1],input[2],input[3]));
+        }
+
+    }
+
+    public static int calculateDistance(int x1 , int y1 , int x2 , int y2){
+        return (int)Math.sqrt(Math.pow(x2-x1,2) + Math.pow(y2-y1,2));
+    }
+
+    public static int[] parseInput(String input){
+        int[] inputValues = new int[4];
+        StringBuilder sb = new StringBuilder(input);
+        for(int x = 0 ; x < 4 ; x += 2){
+            int startIndex = sb.indexOf("(");
+            int endIndex   = sb.indexOf(")");
+            String[] point = sb.substring(startIndex + 1,endIndex).split(",");
+            sb.delete(startIndex,endIndex + 1);
+            inputValues[x] = Integer.parseInt(point[0].trim());
+            inputValues[x+1] = Integer.parseInt(point[1].trim());
+        }
+        return inputValues;
+    }
+
+    public static List<String> getTestCases(String path) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        List<String> cases = new ArrayList<String>();
+        String line = "";
+        while((line = br.readLine()) != null){
+            cases.add(line);
+        }
+        return cases;
+    }
+}

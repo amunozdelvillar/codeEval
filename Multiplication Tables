@@ -1,0 +1,31 @@
+
+
+public class Main {
+
+    	public static void main(String[] args)
+		{
+			String output = "";
+			for(int rows = 1; rows <= 12; rows ++){
+				for(int columns = 1; columns <= 12; columns ++){
+					if(columns == 12){
+						output += formatNumber(rows * columns) + "\n";
+					}else{
+						output += formatNumber(rows * columns);
+					}
+					output.trim();
+				}
+			}
+			System.out.println(output);
+		}
+		
+		public static String formatNumber(int number)
+		{
+			if(number < 10){
+				return  String.format("   %s", number);
+			}else if(number < 100){
+				return	String.format("  %s", number);
+			}else{
+				return	String.format(" %s", number);
+			}
+		}
+}

@@ -1,0 +1,44 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+		String path = args[0];
+		
+		for(String t_case : getTestCasesFromFile(path)){
+			printCase(t_case);
+		}
+	}
+	
+	public static void printCase(String t_case){
+		String [] value_line = t_case.split(" ");
+		String result = "";
+		int max_value = Integer.parseInt(value_line[2]);
+		int a         = Integer.parseInt(value_line[0]);
+		int b         = Integer.parseInt(value_line[1]);
+		for(int x = 1; x <= max_value; x++){
+			if(x%a == 0 && x%b == 0){
+				result += (x == max_value) ? "FB": "FB ";
+			}else if(x%b == 0){
+				result += (x == max_value) ? "B": "B ";
+			}else if(x%a == 0){
+				result += (x == max_value) ? "F": "F ";
+			}else{ result += (x == max_value) ? x : x + " ";}
+		}
+		System.out.println(result);
+	}
+	
+	public static List<String> getTestCasesFromFile(String path) throws IOException{
+		List<String> test_cases = new ArrayList<String>();
+		BufferedReader br = new BufferedReader(new FileReader(path));
+		String line = "";
+		while((line = br.readLine()) != null){
+			test_cases.add(line);
+		}
+		return test_cases;
+	}
+
+}
